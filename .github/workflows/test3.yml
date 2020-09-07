@@ -1,5 +1,10 @@
 name: testy
 on: workflow_dispatch
+  inputs:
+    mirror:
+      description: 'Mirror build toggle'     
+      required: true
+      default: false
 jobs:
   swagger:
     name: Swagger
