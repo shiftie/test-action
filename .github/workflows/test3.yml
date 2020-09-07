@@ -15,5 +15,5 @@ jobs:
       - run: 'echo "field: ${{ github.event.inputs.mirror }}"'
       - run: 'echo "payload: ${{ toJson(github.event.inputs) }}"'
       - run: 'echo "This is a MIRROR build"'
-        if: github.event.inputs.mirror == true
+        if: github.event.inputs.mirror == "true"
       - run: cat README.md
