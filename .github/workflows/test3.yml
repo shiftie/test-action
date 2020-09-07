@@ -1,13 +1,19 @@
 name: testy
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      mirror:
+        description: 'Mirror build toggle'     
+        required: false
+        default: false
 jobs:
   swagger:
     name: Swagger
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: 'echo "field: ${{ github.event.client_payload.foo }}"'
-      - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
-      - run: echo baz
-        if: github.event.action == 'baz'
+      - run: 'echo "field: ${{ github.event.inputs.mirror }}"'
+      - run: 'echo "payload: ${{ toJson(github.event.inputs) }}"'
+      - run: 'echo "This is a MIRROR build"'
+        if: github.event.inputs.mirror == 'true'
       - run: cat README.md
